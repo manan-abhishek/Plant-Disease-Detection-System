@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌿 Plant Disease Detection</title>
     <style>
         body {
@@ -66,6 +68,7 @@
 </head>
 <body>
     <h1>🌿 Plant Disease Detection</h1>
+
     <form action="/predict" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" required>
         <br>
@@ -75,17 +78,20 @@
     {% if image_path %}
         <div>
             <img src="{{ image_path }}" alt="Uploaded Leaf">
+
             <div class="result">
                 <p><strong>Disease:</strong> {{ prediction }}</p>
                 <p><strong>Confidence:</strong> {{ confidence }}%</p>
+
                 <div class="confidence-bar">
-                    <div class="confidence-fill" style="width: {{ confidence }}%">
+                    <div class="confidence-fill" style="width: {{ confidence }}%;">
                         {{ confidence }}%
                     </div>
                 </div>
             </div>
+
             <br><br>
-            <a href="/"><button>Upload Another Image</button></a>
+            <a href="/"><button type="button">Upload Another Image</button></a>
         </div>
     {% endif %}
 </body>

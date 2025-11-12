@@ -1,5 +1,0 @@
-services:
-  - type: web
-    name: plant-disease-detector
-    env: docker
-    plan: free
