@@ -1,27 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Plant Disease Detection</title>
+    <title>🌿 Plant Disease Detection</title>
     <style>
-        body { font-family: Arial; text-align: center; background: #f4f6f7; }
-        h1 { color: #2e7d32; margin-top: 40px; }
-        input, button { padding: 10px; margin-top: 20px; }
-        img { width: 300px; margin-top: 20px; border-radius: 10px; }
-        .result { font-size: 20px; color: #1b5e20; margin-top: 20px; }
+        body {
+            background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: #2e7d32;
+            font-size: 2.2em;
+        }
+        form {
+            margin-top: 30px;
+        }
+        input[type="file"] {
+            margin: 15px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2e7d32;
+        }
+        img {
+            width: 300px;
+            margin-top: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #1b5e20;
+            background: #c8e6c9;
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+        .confidence-bar {
+            width: 300px;
+            height: 20px;
+            background-color: #c8e6c9;
+            border-radius: 10px;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        .confidence-fill {
+            height: 100%;
+            background-color: #2e7d32;
+            text-align: right;
+            color: white;
+            padding-right: 5px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>🌿 Plant Disease Detection</h1>
     <form action="/predict" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" required>
+        <br>
         <button type="submit">Predict</button>
     </form>
 
     {% if image_path %}
-        <img src="{{ image_path }}" alt="Uploaded Image">
-        <div class="result">
-            <p><strong>Disease:</strong> {{ prediction }}</p>
-            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+        <div>
+            <img src="{{ image_path }}" alt="Uploaded Leaf">
+            <div class="result">
+                <p><strong>Disease:</strong> {{ prediction }}</p>
+                <p><strong>Confidence:</strong> {{ confidence }}%</p>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" style="width: {{ confidence }}%">
+                        {{ confidence }}%
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <a href="/"><button>Upload Another Image</button></a>
         </div>
     {% endif %}
 </body>
