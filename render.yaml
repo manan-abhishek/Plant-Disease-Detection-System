@@ -1,11 +1,5 @@
 services:
   - type: web
     name: plant-disease-detector
-    env: python
+    env: docker
     plan: free
-    buildCommand: |
-      pip install --upgrade pip
-      pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    envVars:
-      PYTHON_VERSION: 3.10.14
